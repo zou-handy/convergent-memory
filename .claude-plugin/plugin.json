@@ -1,0 +1,11 @@
+{
+  "name": "convergent-memory",
+  "description": "Local-first, human-readable, cross-agent long-term memory through convergent Markdown — a letter from your last session to your next one.",
+  "version": "0.1.0",
+  "author": {
+    "name": "hd18512614931-cyber",
+    "url": "https://github.com/hd18512614931-cyber"
+  },
+  "homepage": "https://github.com/hd18512614931-cyber/convergent-memory",
+  "license": "MIT"
+}

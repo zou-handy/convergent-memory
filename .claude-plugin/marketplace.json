@@ -1,0 +1,17 @@
+{
+  "name": "convergent-memory",
+  "owner": {
+    "name": "hd18512614931-cyber",
+    "url": "https://github.com/hd18512614931-cyber"
+  },
+  "metadata": {
+    "description": "Local-first, human-readable, cross-agent long-term memory through convergent Markdown — no vector DB, no API keys, no services."
+  },
+  "plugins": [
+    {
+      "name": "convergent-memory",
+      "source": "./",
+      "description": "Local-first, human-readable, cross-agent long-term memory through convergent Markdown — no vector DB, no API keys, no services."
+    }
+  ]
+}
