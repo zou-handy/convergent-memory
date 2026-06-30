@@ -1,0 +1,35 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:h2:file:/root/convergent-memory/data/index;MODE=MySQL;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate.format_sql: true
+
+server:
+  port: 8081
+  forward-headers-strategy: framework
+
+memory:
+  vault:
+    path: /root/memory-vault
+  api-key: dev-secret-key-change-me
+
+agentscope:
+  dashscope:
+    api-key: ${DASHSCOPE_API_KEY:}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
