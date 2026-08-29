@@ -2,6 +2,23 @@
 
 **A letter from your last session to your next one.**
 
+> [!IMPORTANT]
+> **Project status — August 2026:** the Markdown protocol on this default `master` branch is an experimental version and is no longer actively maintained. The earlier **Java / Spring Boot server implementation was not lost**: its complete source is preserved on the [`main` branch](../../tree/main). That version was successfully deployed on DigitalOcean and demonstrated in a Java class; the original server has expired and its public URL is now offline.
+
+## Repository map
+
+| Branch | Implementation | Current status |
+|---|---|---|
+| [`master`](../../tree/master) | Local-first Markdown / Claude Code skill | Experimental, currently inactive |
+| [`main`](../../tree/main) | Spring Boot multi-user AI memory REST API | Source preserved; former deployment offline |
+| [`merge-main-into-master`](../../tree/merge-main-into-master) | Historical integration attempt | Kept only for history |
+
+The two main branches are different implementations of the same idea, not two normal release branches. For portfolio review, the Java project on `main` is the version that provides the clearest evidence of a working server application: 31 Java source files, REST endpoints, Spring Security, JPA/H2, Swagger and an AgentScope-based convergence flow.
+
+The server source remains available, but the original deployment stored its H2 index and Markdown vault under server-local paths such as `/root/convergent-memory/data/` and `/root/memory-vault/`. Unless a DigitalOcean snapshot or separate backup exists, the old runtime data should be treated as unavailable.
+
+---
+
 Convergent Memory is a local-first, human-readable, cross-agent long-term memory protocol. It turns a folder of Markdown files into a living knowledge base that gets better every time an AI agent reads and rewrites it.
 
 No vector database. No API keys. No services. md is the protocol, folder hierarchy is the structure, convergence is the write action.
@@ -14,7 +31,7 @@ Convergent Memory is **notebook**, not scaffolding. If the model becomes infinit
 
 ## How It Works
 
-```
+```text
 Divergent notes (scattered inspirations, drafts, TODOs)
         │
         ▼  Convergence: the model decides what's worth repeated recall
@@ -25,7 +42,8 @@ Archive (read only when digging up history)
 ```
 
 **Three moves, not one:**
-- **Recall** — the agent reads the converged files directly (`read` replaces `inject`)
+
+- **Recall** — the agent reads the converged files directly (`read` replaces `inject`).
 - **Convergence** — rewrite to merge and shorten, never just append. Like matrix rank reduction.
 - **Archive** — move stable-old conclusions out of the hot path; don't delete them.
 
@@ -43,6 +61,8 @@ Archive (read only when digging up history)
 
 ## Getting Started
 
+This section is retained for historical and experimental use. The project is not currently under active maintenance.
+
 ### Install
 
 ```bash
@@ -53,14 +73,14 @@ cp -r convergent-memory/skills/convergent-memory ~/.claude/skills/
 
 Or as a Claude Code plugin:
 
-```
+```text
 /plugin marketplace add hd18512614931-cyber/convergent-memory
 /plugin install convergent-memory@convergent-memory
 ```
 
 ### Folder Convention
 
-```
+```text
 your-memory-vault/
 ├── (scattered .md)          ← Divergent layer: raw inspirations, drafts
 ├── profiles/                ← Converged layer: authoritative, rewritten
@@ -73,28 +93,28 @@ The folder names can evolve — what matters is the three-layer semantics, not t
 
 ### When It Triggers
 
-1. **User says "converge"** (default, safest)
-2. **Session ends** — scan divergent notes, precipitate signals
-3. **Scheduled batch** — if >24h since last convergence
-4. **After complex tasks** — ask "worth saving?" after dense tool-use rounds
+1. **User says "converge"** — default, safest.
+2. **Session ends** — scan divergent notes, precipitate signals.
+3. **Scheduled batch** — when enough new material has accumulated.
+4. **After complex tasks** — ask whether the result is worth saving.
 
 The trigger is deterministic; what counts as worth keeping is the model's judgment.
 
 ## Principles
 
 - **Rewrite over append.** Same topic? Merge, deduplicate, reduce rank. Archive the excess.
-- **Extract, don't invent.** Every line in a profile must trace back to something the user actually said or clearly implied. Simplify (cancel common factors), don't fabricate (add new terms).
-- **Contradiction = rewrite with a trace.** `(Updated 2026-06-10, was: X)` — the evolution is the asset, not just the conclusion.
+- **Extract, don't invent.** Every line in a profile must trace back to something the user actually said or clearly implied.
+- **Contradiction = rewrite with a trace.** Preserve how conclusions changed instead of silently replacing history.
 - **Self-contained and portable.** Any converged file should make sense to a fresh agent with no session context.
-- **Convergence ≠ response.** Saving facts to the vault and answering the user's current question are two separate acts.
+- **Convergence ≠ response.** Saving facts to the vault and answering the current question are separate acts.
 
 ## The Test
 
 > "If the model became infinitely strong, would this still be needed?"
 
-Crutches (vector DBs, context compression, pagination) — discard.  
-Weapons (MCP, CLI, scripts) — get better.  
-A notebook — stays. It's the data, not the architecture, that compounds.
+Crutches — discard.  
+Weapons — get better.  
+A notebook — stays. It is the data, not the architecture, that compounds.
 
 ## License
 
